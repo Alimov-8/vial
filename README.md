@@ -5,11 +5,9 @@ A simple Python Web Framework for building web applications.
 
 ---
 
-**WSGI** (Web Server Gateway Interface) is simply a bridge or translator that lets Python web applications talk to web servers.
+**WSGI** (Web Server Gateway Interface) is simply a bridge or translator that lets Python web applications talk to web servers ([PEP 3333](https://peps.python.org/pep-3333/)).
 In Python web development, we need WSGI because Python web applications cannot natively talk to traditional web servers like Nginx, Apache, or IIS.
 Without a standard interface like WSGI, every web framework would need custom code for every web server, creating severe ecosystem fragmentation.
-
-[PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
 
 ---
 
@@ -21,3 +19,6 @@ Without a standard interface like WSGI, every web framework would need custom co
 5. The WSGI Server formats the raw HTTP response and sends it back to the client's browser.
 
 
+#### Resources
+- [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
+- [WebOb WSGI request and response objects](https://webob.org/)
