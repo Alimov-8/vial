@@ -1,4 +1,4 @@
-# vial
+# 🧪 Vial
 A simple Python Web Framework for building web applications.
 
 ![img.png](img.png)
