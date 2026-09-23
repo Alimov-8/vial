@@ -1,5 +1,5 @@
 from webob import Request, Response
-
+from parse import parse
 
 class Vial:
     def __init__(self):
@@ -12,18 +12,22 @@ class Vial:
 
     def handle_request(self, request):
         response = Response()
-        handler = self.find_handler(request)
-        if handler is not None:
-            handler(request, response)
-            return response
+        handler, kwargs = self.find_handler(request)
 
-        self.default_response(response)
+        if handler is not None:
+            handler(request, response, **kwargs)
+        else:
+            self.default_response(response)
+
         return response
 
     def find_handler(self, request):
         for path, handler in self.routes.items():
-            if path == request.path:
-                return handler
+            parsed_result = parse(path, request.path)
+            if parsed_result is not None:
+                return handler, parsed_result.named
+
+        return None, None
 
     def default_response(self, response):
         response.status_code = 404
