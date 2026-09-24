@@ -1,7 +1,9 @@
 import inspect
+import requests
 
 from webob import Request, Response
 from parse import parse
+from wsgiadapter import WSGIAdapter
 
 
 class Vial:
@@ -52,3 +54,8 @@ class Vial:
             return handler
 
         return wrapper
+ 
+    def test_session(self):
+        session = requests.Session()
+        session.mount('http://testserver', WSGIAdapter(self))
+        return session

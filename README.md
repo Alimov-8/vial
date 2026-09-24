@@ -23,10 +23,15 @@ Without a standard interface like WSGI, every web framework would need custom co
 1. Setup WSGI
 2. Add request and response
 3. Add routing
-4. Add function based and class based handlers
+4. Add function-based and class-based handlers.
+5. Add unit tests
 
 
 #### Resources
 - [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
 - [WebOb WSGI request and response objects](https://webob.org/)
 - [Parse strings using a specification based on the Python format() syntax.](https://pypi.org/project/parse/)
+- [Pytest: helps you write better programs](https://docs.pytest.org/en/stable/)
+- [Requests: HTTP for Humans](https://requests.readthedocs.io/en/latest/)
+- [Requests for Unit Tests](https://github.com/seanbrant/requests-wsgi-adapter)
+- [Pytest coverage](https://pypi.org/project/pytest-cov/)
