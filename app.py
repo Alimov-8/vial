@@ -1,5 +1,8 @@
+import inspect
+
 from webob import Request, Response
 from parse import parse
+
 
 class Vial:
     def __init__(self):
@@ -14,11 +17,19 @@ class Vial:
         response = Response()
         handler, kwargs = self.find_handler(request)
 
-        if handler is not None:
-            handler(request, response, **kwargs)
-        else:
+        if handler is None:
             self.default_response(response)
+            return response
 
+        if inspect.isclass(handler):
+            handler = getattr(handler(), request.method.lower(), None)
+
+            if handler is None:
+                response.status_code = 405
+                response.text = "Method Not Allowed"
+                return response
+
+        handler(request, response, **kwargs)
         return response
 
     def find_handler(self, request):
@@ -34,6 +45,8 @@ class Vial:
         response.text = "Not Found."
 
     def route(self, path):
+        assert path not in self.routes, "Duplicate route. Please change URL."
+
         def wrapper(handler):
             self.routes[path] = handler
             return handler

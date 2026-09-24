@@ -15,3 +15,11 @@ def about(request, response):
 @app.route("/hello/{name}")
 def greeting(request, response, name):
     response.text = f"Hello {name}"
+
+@app.route("/books")
+class Books:
+    def get(self, request, response):
+        response.text = "Read Books"
+
+    def post(self, request, response):
+        response.text = "Create Books"

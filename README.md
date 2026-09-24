@@ -19,6 +19,14 @@ Without a standard interface like WSGI, every web framework would need custom co
 5. The WSGI Server formats the raw HTTP response and sends it back to the client's browser.
 
 
+### Steps for Building Framework
+1. Setup WSGI
+2. Add request and response
+3. Add routing
+4. Add function based and class based handlers
+
+
 #### Resources
 - [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
 - [WebOb WSGI request and response objects](https://webob.org/)
+- [Parse strings using a specification based on the Python format() syntax.](https://pypi.org/project/parse/)
