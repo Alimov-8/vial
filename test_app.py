@@ -72,3 +72,13 @@ def test_class_based_method_not_allowed(app, test_client):
     response = test_client.get("http://testserver/books")
     assert response.text == "Method Not Allowed"
     assert response.status_code == 405
+
+
+def test_alternative_route_adding(app, test_client):
+    def home(request, response):
+        response.text = "Home Page"
+
+    app.add_route("/home", home)
+
+    response = test_client.get("http://testserver/home")
+    assert response.text == "Home Page"

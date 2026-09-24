@@ -23,3 +23,9 @@ class Books:
 
     def post(self, request, response):
         response.text = "Create Books"
+
+
+def new_page(request, response):
+    response.text = f"New Page"
+
+app.add_route("/new-page", new_page)
