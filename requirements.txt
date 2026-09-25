@@ -5,3 +5,4 @@ requests
 requests-wsgi-adapter
 pytest-cov
 Jinja2
+whitenoise

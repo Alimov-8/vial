@@ -27,7 +27,7 @@ Without a standard interface like WSGI, every web framework would need custom co
 6. Add Django style routing
 7. Add templates
 8. Add custom exception handler
-
+9. Add static files
 
 #### Resources
 - [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
@@ -38,3 +38,4 @@ Without a standard interface like WSGI, every web framework would need custom co
 - [Requests for Unit Tests](https://github.com/seanbrant/requests-wsgi-adapter)
 - [Pytest coverage](https://pypi.org/project/pytest-cov/)
 - [Jinja is a fast, expressive, extensible templating engine.](https://jinja.palletsprojects.com/en/stable/)
+- [Radically simplified static file serving for Python web apps](https://whitenoise.readthedocs.io/en/latest/)

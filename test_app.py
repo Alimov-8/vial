@@ -120,3 +120,11 @@ def test_with_no_exception_handler(app, test_client):
             raise AttributeError()
 
         test_client.get("http://testserver/exception")
+
+def test_non_existent_static_file(test_client):
+    assert test_client.get("http://testserver/nonexistent.css").status_code == 404
+
+def test_serving_static_file(test_client):
+    response = test_client.get("http://testserver/test.css")
+    print(response)
+    assert response.text == "body { background-color: chocolate; }"
