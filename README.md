@@ -18,13 +18,15 @@ Without a standard interface like WSGI, every web framework would need custom co
 4. Vial invokes start_response(status, headers) and returns the response body as an iterable (typically a list of bytes).
 5. The WSGI Server formats the raw HTTP response and sends it back to the client's browser.
 
-
 ### Steps for Building Framework
 1. Setup WSGI
 2. Add request and response
 3. Add routing
 4. Add function-based and class-based handlers.
 5. Add unit tests
+6. Add Django style routing
+7. Add templates
+8. Add custom exception handler
 
 
 #### Resources
@@ -35,3 +37,4 @@ Without a standard interface like WSGI, every web framework would need custom co
 - [Requests: HTTP for Humans](https://requests.readthedocs.io/en/latest/)
 - [Requests for Unit Tests](https://github.com/seanbrant/requests-wsgi-adapter)
 - [Pytest coverage](https://pypi.org/project/pytest-cov/)
+- [Jinja is a fast, expressive, extensible templating engine.](https://jinja.palletsprojects.com/en/stable/)

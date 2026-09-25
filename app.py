@@ -1,14 +1,20 @@
+import os
 import inspect
 import requests
 
 from webob import Request, Response
 from parse import parse
 from wsgiadapter import WSGIAdapter
+from jinja2 import Environment, FileSystemLoader
 
 
 class Vial:
-    def __init__(self):
+    def __init__(self, templates_dir="templates"):
         self.routes = dict()
+        self.exception_handler = None
+        self.template_env = Environment(
+              loader=FileSystemLoader(os.path.abspath(templates_dir))
+        )
 
     def __call__(self, environ, start_response):
         request = Request(environ)
@@ -31,7 +37,13 @@ class Vial:
                 response.text = "Method Not Allowed"
                 return response
 
-        handler(request, response, **kwargs)
+        try:
+            handler(request, response, **kwargs)
+        except Exception as e:
+            if self.exception_handler is None:
+                raise e
+            self.exception_handler(request, response, e)
+
         return response
 
     def find_handler(self, request):
@@ -56,6 +68,13 @@ class Vial:
             return handler
 
         return wrapper
+
+    def template(self, template_name, context=None):
+        if context is None: context = dict()
+        return self.template_env.get_template(template_name).render(**context).encode()
+
+    def add_exception_handler(self, exception_handler):
+        self.exception_handler = exception_handler
 
     def test_session(self):
         session = requests.Session()
