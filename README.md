@@ -28,6 +28,7 @@ Without a standard interface like WSGI, every web framework would need custom co
 7. Add templates
 8. Add custom exception handler
 9. Add static files
+10. Add middlewares
 
 #### Resources
 - [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)

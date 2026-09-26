@@ -7,6 +7,7 @@ from parse import parse
 from wsgiadapter import WSGIAdapter
 from jinja2 import Environment, FileSystemLoader
 from whitenoise import WhiteNoise
+from middleware import Middleware
 
 
 class Vial:
@@ -17,13 +18,14 @@ class Vial:
               loader=FileSystemLoader(os.path.abspath(templates_dir))
         )
         self.whitenoise = WhiteNoise(self.wsgi_app, root=static_dir)
+        self.middleware = Middleware(self)
 
     def __call__(self, environ, start_response):
         return self.whitenoise(environ, start_response)
 
     def wsgi_app(self, environ, start_response):
         request = Request(environ)
-        response = self.handle_request(request)
+        response = self.middleware.handle_request(request)
         return response(environ, start_response)
 
     def handle_request(self, request):
@@ -80,6 +82,9 @@ class Vial:
 
     def add_exception_handler(self, exception_handler):
         self.exception_handler = exception_handler
+
+    def add_middleware(self, middleware_cls):
+        self.middleware.add(middleware_cls)
 
     def test_session(self):
         session = requests.Session()

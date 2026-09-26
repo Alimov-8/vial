@@ -1,5 +1,5 @@
 from app import Vial
-
+from middleware import Middleware
 
 app = Vial()
 
@@ -49,3 +49,16 @@ app.add_exception_handler(on_exception)
 @app.route("/exception")
 def exception_throwing_handler(request, response):
     raise AttributeError("Raised AttributeError Exception")
+
+
+class LoggingMiddleware(Middleware):
+    def __init__(self, app):
+        super().__init__(app)
+
+    def process_request(self, request):
+        print("request is being called", request.url)
+
+    def process_response(self, request, response):
+        print("response has been generated", request.url)
+
+app.add_middleware(LoggingMiddleware)
