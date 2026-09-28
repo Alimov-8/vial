@@ -133,28 +133,42 @@ def test_serving_static_file(test_client):
 
 
 def test_middleware_methods_are_called(app, test_client):
-    process_request_called = False
-    process_response_called = False
+    called = []
 
     class SimpleMiddleware(Middleware):
         def __init__(self, app):
             super().__init__(app)
 
         def process_request(self, request):
-            nonlocal process_request_called
-            process_request_called = True
+            called.append("simple request")
 
         def process_response(self, request, response):
-            nonlocal process_response_called
-            process_response_called = True
+            called.append("simple response")
+
+    class NestedMiddleware(Middleware):
+        def __init__(self, app):
+            super().__init__(app)
+
+        def process_request(self, request):
+            called.append("nested request")
+
+        def process_response(self, request, response):
+            called.append("nested response")
 
     app.add_middleware(SimpleMiddleware)
+    app.add_middleware(NestedMiddleware)
 
     @app.route("/home")
     def home(request, response):
+        called.append("handler")
         response.text = "Home Page"
 
     response = test_client.get("http://testserver/home")
     assert response.text == "Home Page"
-    assert process_request_called is True
-    assert process_response_called is True
+    assert called == [
+        "nested request",
+        "simple request",
+        "handler",
+        "simple response",
+        "nested response",
+    ]
