@@ -4,7 +4,7 @@ from middleware import Middleware
 app = Vial()
 
 
-@app.route("/home")
+@app.route("/home", allowed_methods=["get"])
 def home(request, response):
     response.text = "Hello from Home page"
 
