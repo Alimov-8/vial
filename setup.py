@@ -17,13 +17,12 @@ URL = 'https://github.com/Alimov-8/vial'
 EMAIL = 'abdullokh@alimov.io'
 AUTHOR = 'Abdullokh Alimov'
 REQUIRES_PYTHON = '>=3.13.2'
-VERSION = '0.1.0'
+VERSION = '0.1.2'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
     'webob',
     'parse',
-    'requests',
     'Jinja2',
     'whitenoise',
 ]
