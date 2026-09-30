@@ -3,7 +3,7 @@ import json
 from webob import Response as WebobResponse
 
 
-class Response():
+class Response:
     def __init__(self):
         self.json = None
         self.html = None
