@@ -29,6 +29,9 @@ Without a standard interface like WSGI, every web framework would need custom co
 8. Add custom exception handler
 9. Add static files
 10. Add middlewares
+11. Add allowed methods to function based handlers
+12. Add custom responses for webob
+13. Upload to PyPi
 
 #### Resources
 - [PEP 3333 – Python Web Server Gateway Interface](https://peps.python.org/pep-3333/)
@@ -40,3 +43,6 @@ Without a standard interface like WSGI, every web framework would need custom co
 - [Pytest coverage](https://pypi.org/project/pytest-cov/)
 - [Jinja is a fast, expressive, extensible templating engine.](https://jinja.palletsprojects.com/en/stable/)
 - [Radically simplified static file serving for Python web apps](https://whitenoise.readthedocs.io/en/latest/)
+- [Setup.py for Humans](https://github.com/navdeep-G/setup.py)
+- [Twine is a utility for publishing Python packages to PyPI](https://twine.readthedocs.io/en/latest/)
+- [Shields.io - Concise, consistent, and legible badges](https://shields.io/)

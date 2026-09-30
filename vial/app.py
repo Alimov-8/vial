@@ -3,12 +3,13 @@ import inspect
 import requests
 
 from webob import Request
-from response import Response
 from parse import parse
 from wsgiadapter import WSGIAdapter
 from jinja2 import Environment, FileSystemLoader
 from whitenoise import WhiteNoise
-from middleware import Middleware
+
+from .middleware import Middleware
+from .response import Response
 
 
 class Vial:

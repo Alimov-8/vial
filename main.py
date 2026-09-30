@@ -1,5 +1,5 @@
-from app import Vial
-from middleware import Middleware
+from vial.app import Vial
+from vial.middleware import Middleware
 
 app = Vial()
 

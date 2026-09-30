@@ -6,3 +6,6 @@ requests-wsgi-adapter
 pytest-cov
 Jinja2
 whitenoise
+twine
+wheel
+setuptools

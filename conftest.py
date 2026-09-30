@@ -1,6 +1,6 @@
 import pytest
 
-from app import Vial
+from vial.app import Vial
 
 
 @pytest.fixture

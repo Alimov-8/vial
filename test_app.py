@@ -1,7 +1,7 @@
 import pytest
 
 from conftest import app, test_client
-from middleware import Middleware
+from vial.middleware import Middleware
 
 
 def test_basic_route_adding(app):
