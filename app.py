@@ -2,7 +2,8 @@ import os
 import inspect
 import requests
 
-from webob import Request, Response
+from webob import Request
+from response import Response
 from parse import parse
 from wsgiadapter import WSGIAdapter
 from jinja2 import Environment, FileSystemLoader
@@ -87,7 +88,7 @@ class Vial:
 
     def template(self, template_name, context=None):
         if context is None: context = dict()
-        return self.template_env.get_template(template_name).render(**context).encode()
+        return self.template_env.get_template(template_name).render(**context)
 
     def add_exception_handler(self, exception_handler):
         self.exception_handler = exception_handler

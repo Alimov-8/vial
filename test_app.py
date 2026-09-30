@@ -183,3 +183,43 @@ def test_allowed_methods_for_function_based_handlers(app, test_client):
 
     assert response.text == "Method Not Allowed"
     assert response.status_code == 405
+
+
+def test_json_handler(app, test_client):
+    @app.route("/json")
+    def json_handler(request, response):
+        response_data = {"name": "vial", "year": 2026}
+        response.json = response_data
+
+    response = test_client.get("http://testserver/json")
+    data = response.json()
+
+    assert response.headers["Content-Type"] == "application/json"
+    assert data["name"] == "vial"
+    assert data["year"] == 2026
+
+
+def test_text_handler(app, test_client):
+    @app.route("/text")
+    def text_handler(request, response):
+        response.text = "plain text"
+
+    response = test_client.get("http://testserver/text")
+
+    assert "text/plain" in response.headers["Content-Type"]
+    assert response.text == "plain text"
+
+
+def test_html_handler(app, test_client):
+    @app.route("/html")
+    def html_handler(request, response):
+        response.html = app.template(
+            template_name="test.html",
+            context={"title": "Test Title", "body": "Test Body"},
+        )
+
+    response = test_client.get("http://testserver/html")
+
+    assert "text/html" in response.headers["Content-Type"]
+    assert "Test Title" in response.text
+    assert "Test Body" in response.text

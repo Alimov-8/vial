@@ -8,13 +8,21 @@ app = Vial()
 def home(request, response):
     response.text = "Hello from Home page"
 
+
 @app.route("/about")
 def about(request, response):
     response.text = "Hello from About page"
 
+
 @app.route("/hello/{name}")
 def greeting(request, response, name):
     response.text = f"Hello {name}"
+
+@app.route("/json")
+def json_handler(request, response):
+    response_data = {"name": "Name", "year": 2026}
+    response.json = response_data
+
 
 @app.route("/books")
 class Books:
@@ -33,7 +41,7 @@ app.add_route("/new-page", new_page)
 
 @app.route("/new-template")
 def new_template(request, response):
-    response.body = app.template(
+    response.html = app.template(
         template_name="home.html",
         context={"title": "Title", "body": "Body"},
     )
